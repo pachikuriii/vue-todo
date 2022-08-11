@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+  <title>Todoメモアプリ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <h1>ToDoリスト</h1>
+    <table>
+      <thead>
+        <tr>
+          <th class="comment">ToDo</th>
+          <th class="button"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in todos" v-bind:key="item.id">
+          <td>{{ item.comment }}</td>
+          <td class="button">
+
+            <button v-on:click="doRemove(item)">
+              削除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>新規作成</h2>
+    <form class="add-form" v-on:submit.prevent="doAdd">
+    <input type="text" ref="comment">
+    <button type="submit">追加</button>
+    </form>
+  </div>
+
+  <script src="vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
