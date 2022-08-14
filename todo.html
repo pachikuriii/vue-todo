@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-  <title>Todoメモアプリ</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div id="app">
-    <h1>ToDoリスト</h1>
-    <table>
-      <thead>
-        <tr>
-          <th class="comment">ToDo</th>
-          <th class="button"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in todos" v-bind:key="item.id">
-          <td>{{ item.comment }}</td>
-          <td class="button">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todoメモアプリ</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>ToDoリスト</h1>
+      <table>
+        <thead>
+          <tr>
+            <th class="comment">ToDo</th>
+            <th class="button"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="todo in todos" v-bind:key="todo.id">
+            <td class="todo-item-left">
+              <div v-if="!todo.editing" class="todo-item-label">
+                {{ todo.comment }}
+              </div>
+              <input
+                v-else
+                class="todo-item-edit"
+                type="text"
+                v-model="todo.comment"
+              />
+            </td>
+            <td class="button">
+              <button v-if="!todo.editing" v-on:click="doEdit(todo)">
+                編集
+              </button>
+              <button v-else v-on:click="doneEdit(todo)">変更</button>
+              <button v-on:click="doRemove">削除</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-            <button v-on:click="doRemove(item)">
-              削除
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <h2>新規作成</h2>
+      <form class="add-form" v-on:submit.prevent="doAdd">
+        <input type="text" ref="comment" />
+        <button type="submit">追加</button>
+      </form>
+    </div>
 
-    <h2>新規作成</h2>
-    <form class="add-form" v-on:submit.prevent="doAdd">
-    <input type="text" ref="comment">
-    <button type="submit">追加</button>
-    </form>
-  </div>
-
-  <script src="vue.js"></script>
-  <script src="main.js"></script>
-</body>
+    <script src="vue.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
