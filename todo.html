@@ -9,7 +9,7 @@
     <div id="app">
       <h1>&#128064; pachikuriii's todo list &#128064;</h1>
 
-      <form class="add-form" v-on:submit.prevent="doAdd">
+      <form v-on:submit.prevent="doAdd">
         <input type="text" ref="comment" />
         <button type="submit" class="button button-new">追加</button>
       </form>
