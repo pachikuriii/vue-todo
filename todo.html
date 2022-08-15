@@ -3,50 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <title>Todoメモアプリ</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="app">
-      <h1>ToDoリスト</h1>
-      <table>
-        <thead>
-          <tr>
-            <th class="comment">ToDo</th>
-            <th class="button"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="todo in todos" v-bind:key="todo.id">
-            <td class="todo-item-left">
+      <h1>&#128064; pachikuriii's todo list &#128064;</h1>
+
+      <form class="add-form" v-on:submit.prevent="doAdd">
+        <input type="text" ref="comment" />
+        <button type="submit" class="button button-new">追加</button>
+      </form>
+
+      <div>
+        <ul v-for="todo in todos" :key="todo.id">
+          <li>
+            <div class="todo">
               <div v-if="!todo.editing" class="todo-item-label">
                 {{ todo.comment }}
               </div>
-              <input
-                v-else
-                class="todo-item-edit"
-                type="text"
-                v-model="todo.comment"
-              />
-            </td>
-            <td class="button">
-              <button v-if="!todo.editing" v-on:click="doEdit(todo)">
+              <div v-else class="todo-item-edit">
+                <input type="text" v-model="todo.comment" />
+              </div>
+            </div>
+
+            <div class="buttons-wrapper">
+              <button
+                class="button"
+                v-if="!todo.editing"
+                v-on:click="doEdit(todo)"
+              >
                 編集
               </button>
-              <button v-else v-on:click="doneEdit(todo)">変更</button>
-              <button v-on:click="doRemove">削除</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>新規作成</h2>
-      <form class="add-form" v-on:submit.prevent="doAdd">
-        <input type="text" ref="comment" />
-        <button type="submit">追加</button>
-      </form>
+              <button class="button" v-else v-on:click="doneEdit(todo)">
+                変更
+              </button>
+              <button class="button" v-on:click="doRemove">削除</button>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
