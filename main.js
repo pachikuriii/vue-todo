@@ -16,9 +16,8 @@ const todoStorage = {
   }
 }
 
-new Vue({
-  el: '#app',
-  data: function () {
+const app = {
+  data () {
     return {
       todos: []
     }
@@ -56,4 +55,5 @@ new Vue({
   created: function () {
     this.todos = todoStorage.fetch()
   }
-})
+}
+Vue.createApp(app).mount('#app')
