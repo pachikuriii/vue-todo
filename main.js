@@ -34,6 +34,7 @@ new Vue({
         comment: comment.value,
         editing: false
       })
+      todoStorage.save(this.todos)
       comment.value = ''
     },
     doEdit: function (todo) {
@@ -41,6 +42,7 @@ new Vue({
     },
     doneEdit: function (todo) {
       todo.editing = false
+      todoStorage.save(this.todos)
     },
     doRemove: function (todo) {
       const index = this.todos.indexOf(todo)
@@ -48,6 +50,7 @@ new Vue({
       if (check === true) {
         this.todos.splice(index, 1)
       }
+      todoStorage.save(this.todos)
     }
   },
   created: function () {
