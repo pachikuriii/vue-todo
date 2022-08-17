@@ -29,15 +29,8 @@ li {
 }
 
 .todo {
-  display: table;
   width: 80%;
   height: auto;
-}
-
-.todo-item-label,
-.todo-item-edit {
-  display: table-cell;
-  vertical-align: middle;
 }
 
 .buttons-wrapper {
@@ -45,6 +38,7 @@ li {
   margin-left: 1em;
   display: flex;
   justify-content: space-between;
+  vertical-align: middle;
 }
 
 .button {
