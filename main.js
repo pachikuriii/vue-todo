@@ -41,8 +41,8 @@ const app = {
     doRemove: function (selectedTodo) {
       const removeTodo = this.todos.find((todo) => todo.id === selectedTodo.id)
       const index = this.todos.indexOf(removeTodo)
-      const check = confirm('本当に削除しますか？')
-      if (check === true) {
+      const result = confirm('本当に削除しますか？')
+      if (result) {
         this.todos.splice(index, 1)
       }
       todoStorage.save(this.todos)
