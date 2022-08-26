@@ -31,11 +31,11 @@ const app = {
       todoStorage.save(this.todos)
       comment.value = ''
     },
-    doEdit: function (selectedTod) {
-      selectedTod.editing = true
+    doEdit: function (selectedTodo) {
+      selectedTodo.editing = true
     },
-    doneEdit: function (selectedTod) {
-      selectedTod.editing = false
+    doneEdit: function (selectedTodo) {
+      selectedTodo.editing = false
       todoStorage.save(this.todos)
     },
     doRemove: function (selectedTodo) {
