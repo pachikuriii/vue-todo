@@ -31,15 +31,16 @@ const app = {
       todoStorage.save(this.todos)
       comment.value = ''
     },
-    doEdit: function (todo) {
-      todo.editing = true
+    doEdit: function (selectedTod) {
+      selectedTod.editing = true
     },
-    doneEdit: function (todo) {
-      todo.editing = false
+    doneEdit: function (selectedTod) {
+      selectedTod.editing = false
       todoStorage.save(this.todos)
     },
-    doRemove: function (todo) {
-      const index = this.todos.indexOf(todo)
+    doRemove: function (selectedTodo) {
+      const removeTodo = this.todos.find((todo) => todo.id === selectedTodo.id)
+      const index = this.todos.indexOf(removeTodo)
       const check = confirm('本当に削除しますか？')
       if (check === true) {
         this.todos.splice(index, 1)
