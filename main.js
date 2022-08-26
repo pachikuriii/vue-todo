@@ -4,12 +4,7 @@
 const STORAGE_KEY = 'vue-todo'
 const todoStorage = {
   fetch: function () {
-    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    todos.forEach(function (todo, index) {
-      todo.id = index
-    })
-    todoStorage.uid = todos.length
-    return todos
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
   },
   save: function (todos) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
@@ -29,7 +24,7 @@ const app = {
         return
       }
       this.todos.push({
-        id: todoStorage.uid++,
+        id: new Date().getTime(),
         comment: comment.value,
         editing: false
       })
