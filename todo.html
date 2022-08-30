@@ -8,7 +8,7 @@
   <body>
     <div id="app">
       <h1>&#128064; pachikuriii's todo list &#128064;</h1>
-      <form v-on:submit.prevent="add">
+      <form @submit.prevent="add">
         <input type="text" v-model="content" />
         <button type="submit" class="button button-new">追加</button>
       </form>
@@ -22,11 +22,9 @@
           </div>
 
           <div class="buttons-wrapper">
-            <button class="button view" v-on:click="edit(todo)">編集</button>
-            <button class="button edit" v-on:click="doneEdit(todo)">
-              変更
-            </button>
-            <button class="button" v-on:click="remove(todo)">削除</button>
+            <button class="button view" @click="edit(todo)">編集</button>
+            <button class="button edit" @click="doneEdit(todo)">変更</button>
+            <button class="button" @click="remove(todo)">削除</button>
           </div>
         </li>
       </ul>
