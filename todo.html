@@ -14,10 +14,12 @@
       </form>
       <ul class="todo-list">
         <li v-for="todo in todos" :class="{editing: todo == editedTodo}">
-          <div class="view">
-            <label>{{todo.content}}</label>
+          <div class="content-wrapper">
+            <div class="view">
+              <label>{{todo.content}}</label>
+            </div>
+            <input class="edit" type="text" v-model="todo.content" />
           </div>
-          <input class="edit" type="text" v-model="todo.content" />
 
           <div class="buttons-wrapper">
             <button class="button view" v-on:click="edit(todo)">編集</button>
