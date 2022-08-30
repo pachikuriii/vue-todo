@@ -16,32 +16,31 @@ const app = {
     return {
       todos: [],
       editedTodo: '',
-      comment: ''
+      content: ''
     }
   },
   methods: {
-    doAdd: function () {
-      console.log(this.comment)
-      if (!this.comment.length) {
+    add: function () {
+      if (!this.content.length) {
         return
       }
       this.todos.push({
         id: new Date().getTime(),
-        comment: this.comment
+        content: this.content
       })
       todoStorage.save(this.todos)
       this.content = ''
     },
-    doEdit: function (selectedTodo) {
-      this.editedTodo = selectedTodo
+    edit: function (targetTodo) {
+      this.editedTodo = targetTodo
     },
-    doneEdit: function (selectedTodo) {
+    doneEdit: function () {
       todoStorage.save(this.todos)
       this.editedTodo = ''
     },
-    doRemove: function (selectedTodo) {
-      const removeTodo = this.todos.find((todo) => todo.id === selectedTodo.id)
-      const index = this.todos.indexOf(removeTodo)
+    remove: function (targetTodo) {
+      const todo = this.todos.find((todo) => todo.id === targetTodo.id)
+      const index = this.todos.indexOf(todo)
       const result = confirm('本当に削除しますか？')
       if (result) {
         this.todos.splice(index, 1)
