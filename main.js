@@ -15,21 +15,22 @@ const app = {
   data () {
     return {
       todos: [],
-      editedTodo: ''
+      editedTodo: '',
+      comment: ''
     }
   },
   methods: {
-    doAdd: function (value) {
-      const comment = this.$refs.comment
-      if (!comment.value.length) {
+    doAdd: function () {
+      console.log(this.comment)
+      if (!this.comment.length) {
         return
       }
       this.todos.push({
         id: new Date().getTime(),
-        comment: comment.value
+        comment: this.comment
       })
       todoStorage.save(this.todos)
-      comment.value = ''
+      this.content = ''
     },
     doEdit: function (selectedTodo) {
       this.editedTodo = selectedTodo
