@@ -82,3 +82,15 @@ input {
   border: 2px solid palevioletred;
   border-radius: 10px;
 }
+
+.todo-list li.editing .edit {
+  display: block;
+}
+
+.todo-list li.editing .view {
+  display: none;
+}
+
+.todo-list li .edit {
+  display: none;
+}

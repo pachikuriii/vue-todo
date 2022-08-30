@@ -14,7 +14,8 @@ const todoStorage = {
 const app = {
   data () {
     return {
-      todos: []
+      todos: [],
+      editedTodo: ''
     }
   },
   methods: {
@@ -25,18 +26,17 @@ const app = {
       }
       this.todos.push({
         id: new Date().getTime(),
-        comment: comment.value,
-        editing: false
+        comment: comment.value
       })
       todoStorage.save(this.todos)
       comment.value = ''
     },
     doEdit: function (selectedTodo) {
-      selectedTodo.editing = true
+      this.editedTodo = selectedTodo
     },
     doneEdit: function (selectedTodo) {
-      selectedTodo.editing = false
       todoStorage.save(this.todos)
+      this.editedTodo = ''
     },
     doRemove: function (selectedTodo) {
       const removeTodo = this.todos.find((todo) => todo.id === selectedTodo.id)
@@ -52,4 +52,5 @@ const app = {
     this.todos = todoStorage.fetch()
   }
 }
+
 Vue.createApp(app).mount('#app')

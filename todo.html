@@ -8,40 +8,26 @@
   <body>
     <div id="app">
       <h1>&#128064; pachikuriii's todo list &#128064;</h1>
-
       <form v-on:submit.prevent="doAdd">
         <input type="text" ref="comment" />
         <button type="submit" class="button button-new">追加</button>
       </form>
+      <ul class="todo-list">
+        <li v-for="todo in todos" :class="{editing: todo == editedTodo}">
+          <div class="view">
+            <label>{{todo.comment}}</label>
+          </div>
+          <input class="edit" type="text" v-model="todo.comment" />
 
-      <div>
-        <ul v-for="todo in todos" :key="todo.id">
-          <li>
-            <div class="todo">
-              <div v-if="!todo.editing" class="todo-item-label">
-                {{ todo.comment }}
-              </div>
-              <div v-else class="todo-item-edit">
-                <input type="text" v-model="todo.comment" />
-              </div>
-            </div>
-
-            <div class="buttons-wrapper">
-              <button
-                class="button"
-                v-if="!todo.editing"
-                v-on:click="doEdit(todo)"
-              >
-                編集
-              </button>
-              <button class="button" v-else v-on:click="doneEdit(todo)">
-                変更
-              </button>
-              <button class="button" v-on:click="doRemove(todo)">削除</button>
-            </div>
-          </li>
-        </ul>
-      </div>
+          <div class="buttons-wrapper">
+            <button class="button view" v-on:click="doEdit(todo)">編集</button>
+            <button class="button edit" v-on:click="doneEdit(todo)">
+              変更
+            </button>
+            <button class="button" v-on:click="doRemove(todo)">削除</button>
+          </div>
+        </li>
+      </ul>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="main.js"></script>
