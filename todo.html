@@ -9,7 +9,7 @@
     <div id="app">
       <h1>&#128064; pachikuriii's todo list &#128064;</h1>
       <form @submit.prevent="add">
-        <input type="text" v-model="content" />
+        <input type="text" v-model="newTodoContent" />
         <button type="submit" class="button button-new">追加</button>
       </form>
       <ul class="todo-list">
@@ -18,7 +18,7 @@
             <div class="view">
               <label>{{todo.content}}</label>
             </div>
-            <input class="edit" type="text" v-model="todo.content" />
+            <input class="edit" type="text" v-model="editedContent" />
           </div>
           <div class="buttons-wrapper">
             <button class="button view" @click="edit(todo)">編集</button>
