@@ -15,9 +15,9 @@ const app = {
   data () {
     return {
       todos: [],
-      editedTodo: '',
-      newTodoContent: '',
-      editedTodoContent: ''
+      editingTodo: '',
+      newContent: '',
+      editingContent: ''
     }
   },
   methods: {
